@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+     /**
      * Run the migrations.
      */
     public function up()
@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('cpf')->unique();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->date('data_nascimento');
             $table->timestamps();
         });
     }

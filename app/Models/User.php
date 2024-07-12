@@ -20,6 +20,6 @@ class User extends Authenticatable
     protected $fillable = [
         'cpf',
         'name',
-        'email',
+        'data_nascimento',
     ];
 }
