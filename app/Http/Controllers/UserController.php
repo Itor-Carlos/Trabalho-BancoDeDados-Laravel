@@ -12,12 +12,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validacao = Validator::make($request->all(), [
+            'cpf' => 'required|cpf',
             'name' => 'required|string|max:255',
-            'data_nascimento' => 'required',
+            'data_nascimento' => 'required|date',
         ]);
 
-        if($validacao->fails()){
-            return response()->json($validacao->erros(),400);
+        if ($validacao->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validacao)
+                ->withInput();
         }
 
         $usuario = User::create([
@@ -25,8 +29,10 @@ class UserController extends Controller
             'name' => $request->name,
             'data_nascimento' => $request->data_nascimento,
         ]);
-        return response()->json($usuario,201);
+
+        return redirect('/users');
     }
+
 
 
     public function index()
