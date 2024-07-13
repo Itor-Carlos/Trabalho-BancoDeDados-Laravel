@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return response()->json(User::all());
+        return view('list',["users" => User::all()]);
     }
 
     public function salvar(){
