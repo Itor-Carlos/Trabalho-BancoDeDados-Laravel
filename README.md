@@ -17,3 +17,7 @@
     - ```
           php artisan serve
       ```
+ * Comando para gerar a documentação:
+   - ```
+         php artisan l5-swagger:generate
+     ```
