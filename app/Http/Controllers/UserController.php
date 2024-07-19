@@ -20,7 +20,7 @@ class UserController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"cpf","name","email"},
-     *             @OA\Property(property="cpf", type="string", example="12345678900"),
+     *             @OA\Property(property="cpf", type="integer", example="12345678900"),
      *             @OA\Property(property="name", type="string", example="Itor Carlos"),
      *             @OA\Property(property="email", type="string", example="itor.carlos@example.com")
      *         )
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validacao = Validator::make($request->all(), [
-            'cpf' => 'required|cpf',
+            'cpf' => 'required|integer',
             'name' => 'required|string|max:255',
             'data_nascimento' => 'required|date',
         ]);
