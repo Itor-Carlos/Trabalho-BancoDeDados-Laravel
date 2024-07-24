@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,18 +16,21 @@ use Laravel\Sanctum\HasApiTokens;
  *      @OA\Property(
  *          property="cpf",
  *          description="CPF",
- *          type="string"
+ *          type="integer",
+ *          example=12345678910
  *      ),
  *      @OA\Property(
  *          property="name",
  *          description="Name",
- *          type="string"
+ *          type="string",
+ *          example="Itor Carlos"
  *      ),
  *      @OA\Property(
  *          property="data_nascimento",
  *          description="Data de nascimento",
- *          type="date",
- *          format="date"
+ *          type="string",
+ *          format="date",
+ *          example="2007-04-25"
  *      )
  * )
  */

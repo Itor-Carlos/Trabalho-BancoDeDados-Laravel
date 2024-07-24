@@ -20,9 +20,9 @@ class UserController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"cpf","name","email"},
-     *             @OA\Property(property="cpf", type="integer", example="12345678900"),
+     *             @OA\Property(property="cpf", type="integer", example="12345678910"),
      *             @OA\Property(property="name", type="string", example="Itor Carlos"),
-     *             @OA\Property(property="email", type="string", example="itor.carlos@example.com")
+     *             @OA\Property(property="data_nascimento", type="date", example="2007-04-25")
      *         )
      *     ),
      *     @OA\Response(

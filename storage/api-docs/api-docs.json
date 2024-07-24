@@ -47,15 +47,16 @@
                                 "properties": {
                                     "cpf": {
                                         "type": "integer",
-                                        "example": "12345678900"
+                                        "example": "12345678910"
                                     },
                                     "name": {
                                         "type": "string",
                                         "example": "Itor Carlos"
                                     },
-                                    "email": {
+                                    "data_nascimento": {
                                         "type": "string",
-                                        "example": "itor.carlos@example.com"
+                                        "format": "date",
+                                        "example": "2007-04-25"
                                     }
                                 },
                                 "type": "object"
@@ -93,16 +94,19 @@
                 "properties": {
                     "cpf": {
                         "description": "CPF",
-                        "type": "string"
+                        "type": "integer",
+                        "example": 12345678910
                     },
                     "name": {
                         "description": "Name",
-                        "type": "string"
+                        "type": "string",
+                        "example": "Itor Carlos"
                     },
                     "data_nascimento": {
                         "description": "Data de nascimento",
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "example": "2007-04-25"
                     }
                 },
                 "type": "object"
