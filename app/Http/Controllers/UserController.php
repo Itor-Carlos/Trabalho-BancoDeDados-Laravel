@@ -45,10 +45,14 @@ class UserController extends Controller
         ]);
 
         if ($validacao->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validacao)
-                ->withInput();
+            $erros = $validacao->errors();
+            $errosFormatados = [];
+
+            foreach ($erros->toArray() as $campo => $mensagens) {
+                $errosFormatados[$campo] = implode(', ', $mensagens);
+            }
+
+            return response()->json($errosFormatados);
         }
 
         $usuario = User::create([
@@ -57,7 +61,7 @@ class UserController extends Controller
             'data_nascimento' => $request->data_nascimento,
         ]);
 
-        return redirect('/users');
+        return response()->json($usuario,201);
     }
 
     /**
@@ -74,10 +78,55 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('list',["users" => User::all()]);
+        return User::all();
     }
 
     public function salvar(){
         return view('insert');
+    }
+
+    public function buscar(){
+        return view('find_user');
+    }
+
+     /**
+     * @OA\Get(
+     *     path="/user",
+     *     summary="Obtém informações de um usuário pelo CPF",
+     *     description="Retorna os dados do usuário com base no CPF fornecido.",
+     *     operationId="getUser",
+     *     tags={"Usuário"},
+     *     @OA\Parameter(
+     *         name="cpf",
+     *         in="query",
+     *         description="CPF do usuário",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             example="12345678900"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Usuário encontrado",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="nome", type="string", example="João Silva"),
+     *             @OA\Property(property="cpf", type="string", example="12345678900"),
+     *             @OA\Property(property="data_nascimento", type="string", example="1990-01-01")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Usuário não encontrado"
+     *     )
+     * )
+     */
+    public function getUser(Request $request)
+    {
+        $cpfUser = $request->input('cpf');
+        $user = User::where('cpf', $cpfUser)->first();
+        return $user ? response()->json($user, 200) : response()->json([
+            "message" => "Usuário não encontrado"
+        ], 404);
     }
 }

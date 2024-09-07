@@ -80,6 +80,57 @@
                     }
                 }
             }
+        },
+        "/user": {
+            "get": {
+                "tags": [
+                    "Usuário"
+                ],
+                "summary": "Obtém informações de um usuário pelo CPF",
+                "description": "Retorna os dados do usuário com base no CPF fornecido.",
+                "operationId": "getUser",
+                "parameters": [
+                    {
+                        "name": "cpf",
+                        "in": "query",
+                        "description": "CPF do usuário",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "12345678900"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "João Silva"
+                                        },
+                                        "cpf": {
+                                            "type": "string",
+                                            "example": "12345678900"
+                                        },
+                                        "data_nascimento": {
+                                            "type": "string",
+                                            "example": "1990-01-01"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -117,6 +168,10 @@
         {
             "name": "Users",
             "description": "Users"
+        },
+        {
+            "name": "Usuário",
+            "description": "Usuário"
         }
     ]
 }
