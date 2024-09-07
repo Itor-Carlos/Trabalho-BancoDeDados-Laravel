@@ -39,7 +39,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validacao = Validator::make($request->all(), [
-            'cpf' => 'required|numeric|digits:11',
+            'cpf' => 'required|numeric|digits:11|unique:users,cpf',
             'name' => 'required|string|max:255',
             'data_nascimento' => 'required|date',
         ]);
@@ -60,6 +60,8 @@ class UserController extends Controller
             'name' => $request->name,
             'data_nascimento' => $request->data_nascimento,
         ]);
+
+
 
         return response()->json($usuario,201);
     }
