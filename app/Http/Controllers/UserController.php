@@ -61,8 +61,6 @@ class UserController extends Controller
             'data_nascimento' => $request->data_nascimento,
         ]);
 
-
-
         return response()->json($usuario,201);
     }
 
@@ -80,7 +78,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $userArray = User::all()->toArray();
+        foreach ($userArray as &$user) {
+            $user['cpf'] = $this->formatCpf($user['cpf']);
+        }
+        unset($user);
+        return response()->json($userArray);
     }
 
     public function salvar(){
@@ -123,12 +126,24 @@ class UserController extends Controller
      *     )
      * )
      */
-    public function getUser(Request $request)
+        public function getUser(Request $request)
     {
         $cpfUser = $request->input('cpf');
         $user = User::where('cpf', $cpfUser)->first();
+
+        if ($user) {
+            if (strlen($user['cpf']) < 11) {
+                $user['cpf'] = $this->formatCpf($user['cpf']);
+            }
+        }
+
         return $user ? response()->json($user, 200) : response()->json([
             "message" => "Usuário não encontrado"
         ], 404);
+    }
+
+    public function formatCpf($cpf)
+    {
+        return str_pad($cpf, 11, '0', STR_PAD_LEFT);
     }
 }
