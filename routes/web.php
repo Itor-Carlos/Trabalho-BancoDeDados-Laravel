@@ -17,4 +17,4 @@ Route::post('/users', [UserController::class, 'store']);
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/inserir', [UserController::class, 'salvar']);
 Route::get('/buscar', [UserController::class, 'buscar']);
-Route::get('/find', [UserController::class, 'getUser']);
+Route::get('/user', [UserController::class, 'getUser']);
