@@ -84,7 +84,7 @@
         "/user": {
             "get": {
                 "tags": [
-                    "Usuário"
+                    "User"
                 ],
                 "summary": "Obtém informações de um usuário pelo CPF",
                 "description": "Retorna os dados do usuário com base no CPF fornecido.",
@@ -170,8 +170,8 @@
             "description": "Users"
         },
         {
-            "name": "Usuário",
-            "description": "Usuário"
+            "name": "User",
+            "description": "User"
         }
     ]
 }

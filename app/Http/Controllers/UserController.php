@@ -97,7 +97,7 @@ class UserController extends Controller
      *     summary="Obtém informações de um usuário pelo CPF",
      *     description="Retorna os dados do usuário com base no CPF fornecido.",
      *     operationId="getUser",
-     *     tags={"Usuário"},
+     *     tags={"User"},
      *     @OA\Parameter(
      *         name="cpf",
      *         in="query",
