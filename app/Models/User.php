@@ -16,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
  *      @OA\Property(
  *          property="cpf",
  *          description="CPF",
- *          type="integer",
+ *          type="biginteger",
  *          example=12345678910
  *      ),
  *      @OA\Property(
