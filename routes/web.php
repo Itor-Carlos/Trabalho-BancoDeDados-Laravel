@@ -15,6 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('/users', [UserController::class, 'store']);
 Route::get('/users', [UserController::class, 'index']);
-Route::get('/inserir', [UserController::class, 'salvar']);
-Route::get('/buscar', [UserController::class, 'buscar']);
 Route::get('/user', [UserController::class, 'getUser']);

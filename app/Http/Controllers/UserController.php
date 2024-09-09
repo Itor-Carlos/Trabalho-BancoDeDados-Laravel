@@ -52,7 +52,7 @@ class UserController extends Controller
                 $errosFormatados[$campo] = implode(', ', $mensagens);
             }
 
-            return response()->json($errosFormatados);
+            return response()->json($errosFormatados,400);
         }
 
         $usuario = User::create([
@@ -84,14 +84,6 @@ class UserController extends Controller
         }
         unset($user);
         return response()->json($userArray);
-    }
-
-    public function salvar(){
-        return view('insert');
-    }
-
-    public function buscar(){
-        return view('find_user');
     }
 
      /**
